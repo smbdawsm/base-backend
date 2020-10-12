@@ -6,7 +6,6 @@
 `GsheetParser.py` скрипт для парсинга Google таблиц, с записью в базу.
 
 
-`config.py` - конфиг для парсера
 
 
 `quickstart.py` дефолтный файл от Google
