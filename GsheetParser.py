@@ -3,7 +3,7 @@ import httplib2
 import apiclient.discovery
 from oauth2client.service_account import ServiceAccountCredentials
 import itertools
-from mongo import insert_document, objects_collection
+from mongo import Database
 CREDENTIALS_FILE = 'objectspy-16fdec13bb13.json'  # Имя файла с закрытым ключом
 # Читаем ключи из файла
 credentials = ServiceAccountCredentials.from_json_keyfile_name(CREDENTIALS_FILE, ['https://www.googleapis.com/auth/spreadsheets', 'https://www.googleapis.com/auth/drive'])
@@ -32,7 +32,7 @@ def Add_to_Base(row):
     list2=sum(sheet_values2,[])
     shit = zip(list1,list2)
     object_ot = dict(shit)
-    insert_document(objects_collection, object_ot)
+    Database.insert_document(objects_collection, object_ot)
     print('ROW OK')
 while row < 293:
     row += 1
