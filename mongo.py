@@ -32,7 +32,7 @@ class Database:
 
     def printing(self):
         results = self.find_document(self.objects_collection, {})
-        return results
+        return tuple(results)
 
 
     def cherta(self):
