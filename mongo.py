@@ -2,8 +2,6 @@ import pymongo
 import typing
 import random
 import pydantic
-from pydantic import Field
-from pydantic import BaseModel
 from bson.objectid import ObjectId
 
 class Database:
