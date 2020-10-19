@@ -55,10 +55,20 @@ class Database:
             print(entr)
             self.update_document(collection, entr, new_values)
 
-    def search_objects(self, collection, adress):
-        
+    def search_objects(self, collection, adress, options={}):
+        a = collection.find({})
+        b = ''
+        result = []
+        for entr in a:
+            b = entr['address'].split()
+            for el in b:
+                if el == adress:
+                    serch_res = collection.find(entr,options)
+                    result += serch_res
+        return result
 
-'''
 d = Database()
+'''
 d.parse_address(d.objects_collection)
+print(d.search_objects(d.objects_collection, 'Учительская'))
 '''

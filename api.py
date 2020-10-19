@@ -25,11 +25,18 @@ app.add_middleware(
 
 
 @app.get("/objects")
-def read_root():
+async def read_root():
     try:
         a = database.cherta(database.objects_collection, {}, OPTIONS)
     except (TypeError, ValueError):
         raise HTTPException(404, 'Failed to load db')
     return a
 
+@app.get("/search/")
+async def read_user_item( adress: str):
+    try:
+        a = database.search_objects(database.objects_collection, adress, OPTIONS)
+    except(TypeError, ValueError):
+        raise HTTPException(404, 'Failed to load DB')
+    return a
 
