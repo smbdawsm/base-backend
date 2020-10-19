@@ -7,9 +7,11 @@ from bson.objectid import ObjectId
 from properties import DBADDRESS
 
 class Database:
-    client = pymongo.MongoClient(DBADDRESS, 27017)
-    db = client.RentBase
-    objects_collection = db.object
+
+    def __init__(self):
+        self.client = pymongo.MongoClient(DBADDRESS, 27017)
+        self.db = self.client.RentBase
+        self.objects_collection = self.db.object
     
     def find_document(self,collection, elements, multiple=True):
         if multiple:
@@ -23,7 +25,7 @@ class Database:
         return collection.insert_one(data).inserted_id
 
 
-    def delete_document(self,collection, query):
+    def delete_document(self, collection, query):
         collection.delete_one(query)
 
 
@@ -39,3 +41,24 @@ class Database:
     def cherta(self,collection,elements,options,multiple=True):
         a = collection.find(elements, options)
         return list(a)
+
+    def parse_address(self, collection):
+        a = collection.find({})
+        b=''
+        for entr in a:
+            b = entr['address'].split()
+            for el in b:
+                if el == 'г.Новосибирск':
+                    b.remove('г.Новосибирск')
+            new_address = ' '.join(b)
+            new_values = {'address' : new_address}
+            print(entr)
+            self.update_document(collection, entr, new_values)
+
+    def search_objects(self, collection, adress):
+        
+
+'''
+d = Database()
+d.parse_address(d.objects_collection)
+'''
