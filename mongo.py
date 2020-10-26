@@ -10,7 +10,7 @@ class Database:
 
     def __init__(self):
         self.client = pymongo.MongoClient(DBADDRESS, 27017)
-        self.db = self.client.RentBase
+        self.db = self.client.Counters
         self.objects_collection = self.db.object
     
     def find_document(self,collection, elements, multiple=True):

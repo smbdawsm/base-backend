@@ -1,5 +1,5 @@
 DBADDRESS = '192.168.2.195'
-OPTIONS = {
+OPTIONS1 = {
         '_id':0,
         'address':1,
         'phone_manager':1,
@@ -23,5 +23,19 @@ OPTIONS = {
         "obj_presentation": 1
 
     }
-NAME = 'RentBase'
-LIST_OF_TABLE = "БД Объекты!A1:CO1"
+
+OPTIONS = {
+    '_id':0,
+    'Фирма': 1,
+    'Подразделение': 1,
+    'Адрес':1,
+    'Сентябрь 2020':1,
+    'Октябрь 2020': 1,
+    'Потребление': 1
+}
+
+
+
+
+NAME = 'Counters'
+LIST_OF_TABLE = "Октябрь 2020!A1:Z1"
