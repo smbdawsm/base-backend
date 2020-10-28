@@ -8,7 +8,7 @@ from properties import LIST_OF_TABLE
 import time
 
 
-CREDENTIALS_FILE = 'objectspy-0e5376c4ae44.json'  # Имя файла с закрытым ключом
+CREDENTIALS_FILE = 'objectspy-a740b23e0d24.json'  # Имя файла с закрытым ключом
 # Читаем ключи из файла
 credentials = ServiceAccountCredentials.from_json_keyfile_name(CREDENTIALS_FILE, ['https://www.googleapis.com/auth/spreadsheets', 'https://www.googleapis.com/auth/drive'])
 httpAuth = credentials.authorize(httplib2.Http()) # Авторизуемся в системе
@@ -52,14 +52,16 @@ def Add_to_Base(row):
     list2=sum(sheet_values2,[])
     parsed_string = zip(list1,list2)
     object_ot = dict(parsed_string)
+    print(object_ot)
     if object_ot['Октябрь 2020'] == '':
         print(f'ROW {row} - Bad entree')
-        time.sleep(1)
+        time.sleep(1.5)
         pass
     elif object_ot['Октябрь 2020'] != '' and object_ot['key'] == 1 :
         db.insert_document(db.objects_collection, object_ot)
         print(f'ROW {row}, OK, {object_ot}')
-        time.sleep(1)
+        time.sleep(1.5)
+      
 while row < 810:
-    row += 1
     Add_to_Base(row)
+    row += 1

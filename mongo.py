@@ -8,7 +8,7 @@ from properties import DBADDRESS
 
 class Database:
 
-    def __init__(self):
+    def __init__(self, DBADDRESS, ):
         self.client = pymongo.MongoClient(DBADDRESS, 27017)
         self.db = self.client.Counters
         self.objects_collection = self.db.object
@@ -66,9 +66,11 @@ class Database:
                     serch_res = collection.find(entr,options)
                     result += serch_res
         return result
-
-d = Database()
 '''
+d = Database()
+
 d.parse_address(d.objects_collection)
 print(d.search_objects(d.objects_collection, 'Учительская'))
 '''
+
+db = Database(DBADDRESS, Objects)
